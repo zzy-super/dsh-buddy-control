@@ -42,16 +42,20 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 ### 一键（给新机器）
 
 ```powershell
-irm https://raw.githubusercontent.com/zzy-super/dsh-buddy-control/main/bootstrap.ps1 | iex
+git clone https://github.com/zzy-super/dsh-buddy-control.git "$env:TEMP\dsh-buddy-control"
+powershell -ExecutionPolicy Bypass -File "$env:TEMP\dsh-buddy-control\bootstrap.ps1" -Source "$env:TEMP\dsh-buddy-control"
 ```
 
-或下载 zip 解压后：
+也可以让脚本自己拉：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\bootstrap.ps1 -Source .      # -Check 只看不动
+powershell -ExecutionPolicy Bypass -File .\bootstrap.ps1        # 默认从 GitHub 克隆
+powershell -ExecutionPolicy Bypass -File .\bootstrap.ps1 -Check # 只看环境，不动手
 ```
 
 `bootstrap.ps1` 做三件事：拉取/拷贝到 `~/.dsh/local-plugins/dsh-buddy-control` → 跑 `install.ps1`（依赖链接 + 技能 + import 自检）→ 打印在 DSH 里启用那一步。
+
+> `irm https://raw.githubusercontent.com/... | iex` 这种写法在部分网络下会 502（本机实测如此），所以没把它当主路径；`git clone` 走的是 `github.com`，通常可用。完全离线就下载 zip 解压后用 `-Source <解压目录>`。
 
 **插件装进 DSH 之后，业务侧就是一次调用**：
 
