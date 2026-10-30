@@ -1,0 +1,47 @@
+{
+  "name": "dsh-buddy-control",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "DSH as the supervisor of local CodeBuddy / WorkBuddy work: model-pinned dispatch, acceptance review, revision loop, and capability-gap repair.",
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "codebuddy",
+    "workbuddy",
+    "supervisor",
+    "acceptance"
+  ],
+  "license": "MIT",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "install.ps1",
+    "bootstrap.ps1",
+    "skills/buddy-control/SKILL.md",
+    "README.md",
+    "SECURITY.md",
+    "TROUBLESHOOTING.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "meta": {
+    "title": "Buddy 中控 · CodeBuddy / WorkBuddy 验收闭环",
+    "description": "DSH 派活给 CodeBuddy / WorkBuddy，逐轮验收，不合格带着修改意见打回同一会话返工，并补齐它缺的模型、工具与插件。"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

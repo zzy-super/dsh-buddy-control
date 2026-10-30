@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "title": "Buddy Control",
+    "description": "Dispatch work to the local CodeBuddy / WorkBuddy agents, judge each result against acceptance criteria, send the rejections back into the same session, and repair the capabilities the worker was missing."
+  },
+  "tools": {
+    "buddy_run": "Run one supervised attempt on the newest DeepSeek model.",
+    "buddy_review": "Accept the result, or reject it with revision directions.",
+    "buddy_gaps": "List the capabilities the attempt was missing.",
+    "buddy_provision": "Give the worker the missing plugin, MCP server or model.",
+    "buddy_status": "Fleet, pinned model, config drift and the run ledger."
+  }
+}

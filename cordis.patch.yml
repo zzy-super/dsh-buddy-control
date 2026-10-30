@@ -1,0 +1,28 @@
+# dsh-buddy-control bundle patch — one inserted Host row.
+#
+# `name` is the package name so the row also resolves when the bundle is
+# installed into another profile. The config here is the profile-wide default;
+# a user-layer entry with the same id overrides it.
+- insert:
+    - id: buddy-control
+      name: dsh-buddy-control
+      config:
+        # Permission mode for both CodeBuddy-family CLIs: acceptEdits lets the
+        # worker write files unattended. bypassPermissions also skips shell
+        # confirmations (only for sandboxes you trust).
+        permissionMode: acceptEdits
+        # 'latest' = ask the CLI which DeepSeek ids it supports, take the newest.
+        # An explicit id (e.g. deepseek-v4.1-flash) pins that id instead.
+        model: latest
+        # Human-facing snapshot label reported with every attempt and verdict.
+        modelLabel: V4.1-1017
+        # Hard cap on result text returned to the model — the main token lever.
+        maxOutputChars: 6000
+        # Revision budget per run before a run is marked exhausted.
+        defaultMaxRounds: 4
+        # Package ids buddy_deploy uses when a component is missing. Both were
+        # resolved with `winget show` on this machine; change them deliberately,
+        # and note that installs also require acceptInstall:true at call time.
+        nodePackageId: OpenJS.NodeJS.LTS
+        workbuddyPackageId: Tencent.WorkBuddy
+        codebuddyNpmPackage: '@tencent-ai/codebuddy-code'

@@ -1,0 +1,12 @@
+# Normalise on commit so the repo is readable on any platform.
+* text=auto eol=lf
+
+# Windows scripts stay CRLF so they behave in legacy editors/tools.
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.ico binary

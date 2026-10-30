@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "title": "Buddy 中控 · CodeBuddy / WorkBuddy 验收闭环",
+    "description": "把活派给本机的 CodeBuddy / WorkBuddy，按验收标准逐轮判定；不合格就带着修改意见打回同一个会话返工，并补齐它缺的模型、工具与插件。"
+  },
+  "tools": {
+    "buddy_run": "用最新 DS 模型跑一次受监督的任务。",
+    "buddy_review": "验收通过与打回，打回会带着修改意见继续同一会话。",
+    "buddy_gaps": "列出这次尝试缺的能力（登录、命令、包、工具、MCP、权限、模型）。",
+    "buddy_provision": "给 Buddy 补上缺的插件、MCP 服务或模型。",
+    "buddy_status": "Worker 状态、当前锁定模型、配置漂移与运行台账。"
+  }
+}

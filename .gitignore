@@ -1,0 +1,14 @@
+# The dependency junction install.ps1 creates; never commit it.
+node_modules/
+
+# Local artefacts
+*.log
+*.bak
+*.bak-*
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Run ledger and device profiles live in ~/.dsh/buddy-control, never here.
+runs/
+devices/
