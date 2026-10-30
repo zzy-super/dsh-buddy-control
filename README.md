@@ -243,3 +243,18 @@ powershell -File .\install.ps1 -Check                   # 依赖链接 / 技能 
 - 不覆盖：CodeBuddy、WorkBuddy、DeepSeek Harness 本身，以及它们的名称/标识。要商用这些软件，按各自的条款另办。
 - 仓库内**没有**复制任何第三方代码；图标是原创 SVG，运行时只依赖 DSH 自带的 `@deepseek-ai/dsh-tools`（不打包、不分发）。
 - 不想用 MIT 的话，换成 Apache-2.0（带专利授权）或 AGPL 都是一次提交的事。
+
+## 使用与合规（重要）
+
+这个插件是**工具**，不构成对任何服务的授权。用之前请知道：
+
+- **账号条款优先**：它驱动的是你自己已安装的 CodeBuddy / WorkBuddy 和你自己的账号额度。用自动化跑它们，须遵守各自的用户协议与付费条款。**不要**用它转售访问权限、代刷额度或规避限流——那是明确的违约行为，可能导致账号被封。
+- **不绕过任何限制**：只调用 CLI 的公开参数（`-p --output-format json --model … --resume …`），不修改、不逆向、不破解它们的程序。WorkBuddy 拿不到登录态时直接报缺口，**不会**尝试解密 `~/.workbuddy/keyblob`。
+- **公司代码自己评估**：把仓库内容交给第三方 CLI 处理，属于你所在组织的数据政策问题，与本项目无关。
+- **商标是描述性使用**：README 提到 CodeBuddy / WorkBuddy / DeepSeek 只为说明兼容对象；项目名、图标都没用它们的标识，也不代表任何官方关系。
+- **无担保**：MIT 的 `AS IS` 就是字面意思，出问题作者不承担赔偿责任。
+
+## 致谢
+
+- 子进程调度、输出封装和 token 节流的写法，参考了本机已有的 `dsh-console` 插件（MIT）。
+- 模型列表解析依赖 CodeBuddy CLI 自己打印的 `Currently supported:` 一行，没有硬编码厂商的模型清单。
