@@ -6,6 +6,8 @@ DSH 当中控台，CodeBuddy / WorkBuddy 当工人：**派活 → 自己验收 �
 
 > **安全性**：插件自身不联网、不收集遥测、不持有任何模型/账号凭据；所有写操作限定在 `~/.codebuddy`（写前备份）和 `~/.dsh/buddy-control`，且默认只出计划。完整边界见 **[SECURITY.md](SECURITY.md)**。
 
+> **非官方项目**：个人作品，与 DeepSeek、腾讯（CodeBuddy / WorkBuddy）**无隶属或背书关系**。它只是在你本机调用你已安装的那些软件，那些软件自身受各自的许可与服务条款约束。
+
 ```js
 buddy_run({ worker: "codebuddy", task: "...", acceptance: "...", checks: [...] })
 buddy_review({ runId, verdict: "reject", issues: [{ where: "a.ts:12", problem: "...", direction: "..." }] })
@@ -224,9 +226,7 @@ powershell -File .\install.ps1 -Check                   # 依赖链接 / 技能 
 
 然后在插件管理里把 `buddy-control` **关掉再打开**——HMR 不覆盖被链接的包，这一点是实测的。最后 `buddy_doctor()` 确认干净。
 
-它会：建依赖目录联接 → 装 `~/.dsh/skills/buddy-control` 技能 → 用真实 `import('./index.js')` 探针确认能加载。**这一步是唯一 `buddy_doctor` 诊断不到的失败**（插件加载期就挂了，工具还没注册）。
-
-改完 `index.js` 后在 DSH 里重载 profile（插件管理里关一下再开 `buddy-control`）即可生效，不用重装。
+依赖链接由 `install.ps1` 维护（幂等，`-Check` 只查不改）：建目录联接 → 装 `~/.dsh/skills/buddy-control` 技能 → 用真实 `import('./index.js')` 探针确认能加载。**这一步是唯一 `buddy_doctor` 诊断不到的失败**（插件加载期就挂了，那时还没有工具）。
 
 ## 配置项
 
@@ -234,3 +234,12 @@ powershell -File .\install.ps1 -Check                   # 依赖链接 / 技能 
 `codebuddyEntry`、`nodePath`、`workbuddyExe`、`workbuddyEntry`、`workbuddyNode`、`permissionMode`、`model`、`fallbackModel`、`modelLabel`、`requiredModelPattern`、`maxOutputChars`、`maxCaptureChars`、`defaultTimeoutSec`、`defaultMaxRounds`、`stateDir`、`nodePackageId`、`workbuddyPackageId`、`codebuddyNpmPackage`。
 
 `codebuddyEntry` / `workbuddyEntry` 现在只是**首选值**：填错、或换台机器后路径不同，运行时会自动回落到发现结果，不用改配置。
+
+## 许可证
+
+**[MIT](LICENSE)** — 可商用、可修改、可再分发、可私有化，保留版权与许可声明即可；**不提供任何担保**。
+
+- 覆盖范围：本仓库的代码与文档（含 `skills/` 里的技能描述）。
+- 不覆盖：CodeBuddy、WorkBuddy、DeepSeek Harness 本身，以及它们的名称/标识。要商用这些软件，按各自的条款另办。
+- 仓库内**没有**复制任何第三方代码；图标是原创 SVG，运行时只依赖 DSH 自带的 `@deepseek-ai/dsh-tools`（不打包、不分发）。
+- 不想用 MIT 的话，换成 Apache-2.0（带专利授权）或 AGPL 都是一次提交的事。
